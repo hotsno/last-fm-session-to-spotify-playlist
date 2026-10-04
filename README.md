@@ -1,36 +1,21 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Last.fm session → Spotify playlist
 
-## Getting Started
+Sign in with Spotify, enter a Last.fm username and a date, pull the surrounding days of scrobbles, check the tracks you want, and create a playlist.
 
-First, run the development server:
+## Setup
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. `cp .env.example .env.local` and fill it in:
+   - `AUTH_SECRET`: run `npx auth secret`
+   - `AUTH_SPOTIFY_ID` / `AUTH_SPOTIFY_SECRET`: from the [Spotify dashboard](https://developer.spotify.com/dashboard). Add the redirect URI `http://127.0.0.1:3000/api/auth/callback/spotify` (plus `https://<your-app>.vercel.app/api/auth/callback/spotify` for production). While the app is in Development Mode, add each user under *User Management*.
+   - `LASTFM_API_KEY`: from <https://www.last.fm/api/account/create>
+2. `npm install && npm run dev`, then open <http://127.0.0.1:3000>.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deploying
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Import the repo in Vercel and set the same four environment variables.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Using the table
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Click a row to select it; Shift-click selects a range; Cmd/Ctrl-click toggles individual rows.
+- "Check selected" / "Uncheck selected" apply to the selected rows. Toggling a checkbox inside a multi-row selection applies to the whole selection.
+- The header checkbox checks or unchecks everything.
